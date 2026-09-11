@@ -1,0 +1,11 @@
+timestamp,line,step,ccp_id,target_temp_F,actual_temp_F,duration_min,notes
+2026-08-10 05:00,Line 2,Cook Step,CCP1 - Lethality,165,166,12,Normal - within validated kill-step parameters (165F for 165s min)
+2026-08-10 06:15,Line 2,Cook Step,CCP1 - Lethality,165,165,12,Normal
+2026-08-10 07:30,Line 2,Cook Step,CCP1 - Lethality,165,158,9,"DEVIATION - actual temp/time below validated kill-step parameters (target 165F/12min, achieved 158F/9min); oven door held open during extended loading. Corrective action: NONE LOGGED - batch released without reprocessing or hold-and-test"
+2026-08-10 07:45,Line 2,Cook Step,CCP1 - Lethality,165,165,12,Normal - oven door issue resolved
+2026-08-10 09:00,Line 2,Cook Step,CCP1 - Lethality,165,167,13,Normal
+2026-08-10 10:00,Line 2,Chill Step,CCP2 - Cooling,40,39,45,Normal - cooled to spec within required window
+2026-08-10 11:50,Line 2,Line Changeover,N/A,N/A,N/A,"Changeover from raw trim prep run to RTE slicing run; see sanitation log for equipment cleaning status"
+2026-08-10 12:15,Line 2,Slicing/RTE Packaging,N/A,N/A,N/A,Normal line speed, no equipment faults logged
+2026-08-10 14:30,Line 2,Cook Step,CCP1 - Lethality,165,166,12,Normal (afternoon lot PLT-8851)
+2026-08-10 16:00,Line 2,Chill Step,CCP2 - Cooling,40,38,44,Normal

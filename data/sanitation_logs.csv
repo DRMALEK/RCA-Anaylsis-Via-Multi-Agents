@@ -1,0 +1,13 @@
+date,time,zone,event_type,details
+2026-08-09,22:00,Raw Poultry Prep Zone,Environmental Swab,Salmonella - Positive (prep table, routine/expected in raw zone per plant baseline)
+2026-08-10,06:00,RTE Packaging Zone,Cleaning Cycle,Completed - ATP score 8 (pass, threshold <10)
+2026-08-10,06:15,Raw Poultry Prep Zone,Cleaning Cycle,Completed - ATP score 12 (pass, threshold <15)
+2026-08-10,06:30,Shared Slicer/Changeover Equipment,Cleaning Cycle,Completed - full teardown clean, ATP score 6 (pass)
+2026-08-10,11:50,Shared Slicer/Changeover Equipment,Line Changeover Note,"Rushed changeover from raw trim run to RTE slicing run (behind schedule); full teardown clean SKIPPED, quick wipe-down only, no ATP verification logged"
+2026-08-10,14:00,RTE Packaging Zone,Environmental Swab,Salmonella - Negative
+2026-08-10,18:00,RTE Packaging Zone,Environmental Swab,Salmonella - Negative
+2026-08-11,06:00,Shared Slicer/Changeover Equipment,Environmental Swab (food-contact surface),Salmonella - POSITIVE
+2026-08-11,06:00,RTE Packaging Zone,Environmental Swab,Salmonella - Negative
+2026-08-11,09:00,Finished Product Cooler,Environmental Swab,Salmonella - Negative
+2026-08-12,06:00,Shared Slicer/Changeover Equipment,Cleaning Cycle,Completed - full teardown clean, ATP score 7 (pass)
+2026-08-12,06:00,Shared Slicer/Changeover Equipment,Environmental Swab (re-test),Salmonella - Negative
