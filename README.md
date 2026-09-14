@@ -2,8 +2,9 @@
 
 A small demo of multi-agent orchestration with [LangGraph's `deepagents`](https://github.com/langchain-ai/deepagents),
 applied to root-cause analysis (RCA) of a **Salmonella contamination incident at a food
-manufacturing plant**. Two versions are included so you can compare persona-based multi-agent
-orchestration against a single generalist agent on identical data.
+manufacturing plant**. 
+
+Two versions are included so you can compare persona-based multi-agent orchestration against a single generalist agent on identical data.
 
 Models are free-tier models served via [OpenRouter](https://openrouter.ai/).
 
