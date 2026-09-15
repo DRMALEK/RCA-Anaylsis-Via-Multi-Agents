@@ -3,6 +3,7 @@
 from deepagents import create_deep_agent
 
 from common.data import INCIDENT_SUMMARY
+from common.metrics import RunMetrics, timed_invoke
 from common.models import make_model
 
 SANITATION_PERSONA = """\
@@ -45,27 +46,22 @@ FINAL ROOT CAUSE, an overall confidence level, and a short evidence chain spanni
 sources."""
 
 
-def _run(agent, user_message: str) -> str:
-    result = agent.invoke({"messages": [{"role": "user", "content": user_message}]})
-    return result["messages"][-1].content
-
-
-def investigate_sanitation(sanitation_logs: str) -> str:
+def investigate_sanitation(sanitation_logs: str) -> tuple[str, RunMetrics]:
     agent = create_deep_agent(model=make_model("sanitation"), system_prompt=SANITATION_PERSONA)
     prompt = f"{INCIDENT_SUMMARY}\n\nSanitation & environmental monitoring log:\n{sanitation_logs}"
-    return _run(agent, prompt)
+    return timed_invoke(agent, prompt, "Maria Chen (Sanitation & QA Manager)")
 
 
-def investigate_supplier(supplier_records: str) -> str:
+def investigate_supplier(supplier_records: str) -> tuple[str, RunMetrics]:
     agent = create_deep_agent(model=make_model("supplier"), system_prompt=SUPPLIER_PERSONA)
     prompt = f"{INCIDENT_SUMMARY}\n\nSupplier / incoming material records:\n{supplier_records}"
-    return _run(agent, prompt)
+    return timed_invoke(agent, prompt, "Devon Okafor (Supplier Quality Auditor)")
 
 
-def investigate_process(process_logs: str) -> str:
+def investigate_process(process_logs: str) -> tuple[str, RunMetrics]:
     agent = create_deep_agent(model=make_model("process"), system_prompt=PROCESS_PERSONA)
     prompt = f"{INCIDENT_SUMMARY}\n\nProduction line process log:\n{process_logs}"
-    return _run(agent, prompt)
+    return timed_invoke(agent, prompt, "Priya Nair (Process/HACCP Engineer)")
 
 
 def cross_reference(
@@ -75,7 +71,7 @@ def cross_reference(
     sanitation_hypothesis: str,
     supplier_hypothesis: str,
     process_hypothesis: str,
-) -> str:
+) -> tuple[str, RunMetrics]:
     agent = create_deep_agent(model=make_model("cross_reference"), system_prompt=CROSS_REFERENCE_PERSONA)
     prompt = (
         f"{INCIDENT_SUMMARY}\n\n"
@@ -86,4 +82,4 @@ def cross_reference(
         f"=== Raw source: supplier_records.json ===\n{supplier_records}\n\n"
         f"=== Raw source: process_logs.csv ===\n{process_logs}\n"
     )
-    return _run(agent, prompt)
+    return timed_invoke(agent, prompt, "Dr. Alan Reyes (Food Safety Director) - Cross-Referenced Conclusion")

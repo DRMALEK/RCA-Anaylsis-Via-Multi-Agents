@@ -3,6 +3,7 @@
 from deepagents import create_deep_agent
 
 from common.data import INCIDENT_SUMMARY, load_all_sources
+from common.metrics import RunMetrics, timed_invoke
 from common.models import make_model
 
 SYSTEM_PROMPT = """\
@@ -15,7 +16,7 @@ CAUSE, an overall confidence level, and a short evidence chain citing the specif
 entries that support your conclusion."""
 
 
-def run_single_agent() -> str:
+def run_single_agent() -> tuple[str, RunMetrics]:
     sources = load_all_sources()
     agent = create_deep_agent(model=make_model("single_agent"), system_prompt=SYSTEM_PROMPT)
     prompt = (
@@ -24,5 +25,4 @@ def run_single_agent() -> str:
         f"=== supplier_records.json ===\n{sources['supplier_records.json']}\n\n"
         f"=== process_logs.csv ===\n{sources['process_logs.csv']}\n"
     )
-    result = agent.invoke({"messages": [{"role": "user", "content": prompt}]})
-    return result["messages"][-1].content
+    return timed_invoke(agent, prompt, "Single Agent (generalist)")

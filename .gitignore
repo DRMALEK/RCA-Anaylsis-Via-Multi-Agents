@@ -5,3 +5,5 @@ __pycache__/
 venv/
 rca_report_multi_agent.md
 rca_report_single_agent.md
+metrics_multi_agent.json
+metrics_single_agent.json

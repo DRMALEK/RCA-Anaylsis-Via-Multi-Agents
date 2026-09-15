@@ -9,12 +9,14 @@ load_dotenv()
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
+DEFAULT_OPENROUTER_MODEL = 'inclusionai/ling-3.0-flash-vl:free'        # For the sake of simplicity we will direct all requests to the same model
+
 DEFAULT_MODELS = {
-    "sanitation": "meta-llama/llama-3.3-70b-instruct:free",
-    "supplier": "qwen/qwen-2.5-72b-instruct:free",
-    "process": "deepseek/deepseek-chat-v3.1:free",
-    "cross_reference": "deepseek/deepseek-chat-v3.1:free",
-    "single_agent": "deepseek/deepseek-chat-v3.1:free",
+    "sanitation": "inclusionai/ling-3.0-flash-vl:free",
+    "supplier": "inclusionai/ling-3.0-flash-vl:free",
+    "process": "inclusionai/ling-3.0-flash-vl:free",
+    "cross_reference": "inclusionai/ling-3.0-flash-vl:free",
+    "single_agent": "inclusionai/ling-3.0-flash-vl:free",
 }
 
 
