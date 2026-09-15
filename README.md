@@ -68,6 +68,32 @@ multi-agent version's trace shows each specialist reasoning independently from a
 before a dedicated cross-reference step combines them, versus a single agent reasoning over
 everything at once.
 
+## Token usage & latency
+
+Both CLIs track token usage (input/output/total) and wall-clock latency for every deep-agent LLM
+call. After a run finishes, a summary table is printed to the console, e.g.:
+
+```
+================================================================================
+Metrics Summary
+================================================================================
+Agent                                               Calls        In       Out     Total  Latency(s)
+--------------------------------------------------------------------------------------------------
+Maria Chen (Sanitation & QA Manager)                    2       842       310      1152        4.31
+Devon Okafor (Supplier Quality Auditor)                 2       901       275      1176        3.98
+Priya Nair (Process/HACCP Engineer)                     3      1204       402      1606        6.12
+Dr. Alan Reyes (Food Safety Director) - ...             2      2380       540      2920        7.45
+--------------------------------------------------------------------------------------------------
+TOTAL                                                    9      5327      1527      6854       21.86
+```
+
+The same data is written to `metrics_multi_agent.json` / `metrics_single_agent.json` (one entry per
+agent), so you can compare the cost/latency overhead of the orchestrated fan-out-then-join pipeline
+against the single generalist agent. Both files are gitignored since they're per-run output.
+
+Note: since the default models are free-tier, this tracks token counts and latency rather than
+dollar cost — swap in paid model IDs (see below) if you want to translate token counts into cost.
+
 ## Setup
 
 1. `pip install -r requirements.txt`
@@ -76,3 +102,6 @@ everything at once.
 4. Run either `python multi_agent_main.py` or `python single_agent_main.py`
 
 Per-role model IDs can be overridden via env vars — see `.env.example`.
+
+Both CLIs also accept `--out <path>` (report destination) and `--metrics-out <path>` (metrics JSON
+destination) to override the default filenames.
