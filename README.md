@@ -74,17 +74,14 @@ Both CLIs track token usage (input/output/total) and wall-clock latency for ever
 call. After a run finishes, a summary table is printed to the console, e.g.:
 
 ```
-================================================================================
-Metrics Summary
-================================================================================
-Agent                                               Calls        In       Out     Total  Latency(s)
---------------------------------------------------------------------------------------------------
-Maria Chen (Sanitation & QA Manager)                    2       842       310      1152        4.31
-Devon Okafor (Supplier Quality Auditor)                 2       901       275      1176        3.98
-Priya Nair (Process/HACCP Engineer)                     3      1204       402      1606        6.12
-Dr. Alan Reyes (Food Safety Director) - ...             2      2380       540      2920        7.45
---------------------------------------------------------------------------------------------------
-TOTAL                                                    9      5327      1527      6854       21.86
+Agent                                                                  Calls        In       Out     Total  Latency(s)
+----------------------------------------------------------------------------------------------------------------------
+Maria Chen (Sanitation & QA Manager)                                       1      3516      1958      5474       17.23
+Devon Okafor (Supplier Quality Auditor)                                    1      3713      2585      6298       21.94
+Priya Nair (Process/HACCP Engineer)                                        1      3575      2080      5655       30.86
+Dr. Alan Reyes (Food Safety Director) - Cross-Referenced Conclusion        1      8424      8992     17416       72.04
+----------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                      4     19228     15615     34843      142.07
 ```
 
 The same data is written to `metrics_multi_agent.json` / `metrics_single_agent.json` (one entry per

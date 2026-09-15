@@ -50,14 +50,15 @@ def timed_invoke(agent, user_message: str, label: str) -> tuple[str, RunMetrics]
 
 
 def print_summary(metrics_list: list[RunMetrics]) -> None:
-    header = f"{'Agent':<50}{'Calls':>7}{'In':>10}{'Out':>10}{'Total':>10}{'Latency(s)':>12}"
-    print(f"{'=' * 80}\nMetrics Summary\n{'=' * 80}")
+    label_width = max([len("Agent"), len("TOTAL")] + [len(m.label) for m in metrics_list]) + 2
+    header = f"{'Agent':<{label_width}}{'Calls':>7}{'In':>10}{'Out':>10}{'Total':>10}{'Latency(s)':>12}"
+    print(f"{'=' * len(header)}\nMetrics Summary\n{'=' * len(header)}")
     print(header)
     print("-" * len(header))
 
     totals = {"llm_calls": 0, "input_tokens": 0, "output_tokens": 0, "total_tokens": 0, "latency_s": 0.0}
     for m in metrics_list:
-        print(f"{m.label:<50}{m.llm_calls:>7}{m.input_tokens:>10}{m.output_tokens:>10}{m.total_tokens:>10}{m.latency_s:>12.2f}")
+        print(f"{m.label:<{label_width}}{m.llm_calls:>7}{m.input_tokens:>10}{m.output_tokens:>10}{m.total_tokens:>10}{m.latency_s:>12.2f}")
         totals["llm_calls"] += m.llm_calls
         totals["input_tokens"] += m.input_tokens
         totals["output_tokens"] += m.output_tokens
@@ -66,7 +67,7 @@ def print_summary(metrics_list: list[RunMetrics]) -> None:
 
     print("-" * len(header))
     print(
-        f"{'TOTAL':<50}{totals['llm_calls']:>7}{totals['input_tokens']:>10}"
+        f"{'TOTAL':<{label_width}}{totals['llm_calls']:>7}{totals['input_tokens']:>10}"
         f"{totals['output_tokens']:>10}{totals['total_tokens']:>10}{totals['latency_s']:>12.2f}\n"
     )
 
